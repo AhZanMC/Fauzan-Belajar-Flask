@@ -1,0 +1,18 @@
+# Folder Virtual Environment
+env/
+venv/
+ENV/
+
+# Sampah kompilasi Python (Biar Pandawara yang bersihin :v)
+__pycache__/
+*.pyc
+
+# Database
+*.db
+*.sqlite3
+
+# File Konfigurasi Rahasia Negara :V
+.env
+
+# Folder System
+.DS_Store
