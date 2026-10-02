@@ -1,8 +1,5 @@
-from flask_aqlchemy import SQLAlchemy
+from app.extensions import db
 
-db = SQLAlchemy()
-
-# Ini untuk model tabel User, yang nantinya bakal dipake buat nyimpen data user di database
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
