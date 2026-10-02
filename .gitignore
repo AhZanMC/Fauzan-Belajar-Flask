@@ -1,0 +1,33 @@
+# Python Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment Variables & Secrets (Aman buat simpan API key / DB config nanti)
+.env
+.env.local
+*.secret
+
+# Node / Vite (Frontend Build & Dependencies)
+node_modules/
+.vite/
+dist/
+dist-ssr/
+*.local
+
+# IDE & Editor Settings (VS Code, PyCharm)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS System Files
+.DS_Store
+Thumbs.db

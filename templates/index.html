@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel Fauzan</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS v4 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+
+    <!-- Icon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+</head>
+
+<body class="h-full font-sans antialiased text-slate-800 bg-slate-50 flex overflow-hidden">
+    <!-- ================================================================= -->
+    <!-- SIDEBAR : SIDEBAR                                                 -->
+    <!-- ================================================================= -->
+    <aside id="sidebar" class="sidebar-expanded bg-white border-r border-slate-200 flex flex-col justify-between transition-all duration-300 z-30 shrink-0 relative">
+        
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Sidebar Header / Logo -->
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div class="h-16 border-b border-slate-100 flex items-center justify-between px-4">
+            <a href="#" class="flex items-center gap-3 overflow-hidden">
+                <img 
+                    src="{{ url_for('static', filename='images/logo.png') }}" 
+                    alt="Logo Aplikasi" 
+                    class="w-9 h-9 object-contain shrink-0 rounded-lg shadow-sm pixelated"
+                />
+                <!-- Judul Aplikasi -->
+                <span class="font-bold text-lg text-slate-800 sidebar-text whitespace-nowrap tracking-tight">Admin Panel</span>
+            </a>
+            <!-- Collapse Button inside Sidebar for Desktop -->
+            <button id="sidebarToggle" class="btn-icon hidden md:flex" title="Toggle Sidebar">
+                <svg class="w-5 h-5 transition-transform duration-300" id="toggleIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Sidebar Navigation Menu -->
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div class="flex-1 overflow-y-auto px-3 py-4 no-scrollbar">
+            
+            <!-- Group 1: Main Menu -->
+            <div class="mb-6">
+                <!-- Nama kategori menu di sidebar -->
+                <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 sidebar-text">Utama</p>
+                <nav class="space-y-1">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-100 text-slate-900 font-medium transition-colors">
+                        <svg class="w-5 h-5 text-slate-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                        <span class="sidebar-text text-sm">Dashboard</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-colors">
+                        <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        <span class="sidebar-text text-sm">Analitik</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-colors">
+                        <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                        </svg>
+                        <span class="sidebar-text text-sm">Project Module</span>
+                        <span class="sidebar-text ml-auto px-2 py-0.5 text-xs bg-slate-200 text-slate-700 rounded-full font-semibold">12</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Group 2: Management -->
+            <div class="mb-6">
+                <!-- Nama kategori menu di sidebar -->
+                <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 sidebar-text">Manajemen</p>
+                <nav class="space-y-1">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-colors">
+                        <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <span class="sidebar-text text-sm">Pengguna / Tim</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-colors">
+                        <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <span class="sidebar-text text-sm">Pengaturan</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="mb-6">
+                <!-- Nama kategori menu di sidebar -->
+                <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 sidebar-text">Lainnya</p>
+                <nav class="space-y-1">
+                    <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-colors">
+                        <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        <span class="sidebar-text text-sm">Bantuan / Docs</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <!-- Sidebar Footer: Profile Info & Logout Section -->
+        <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <div class="p-3 border-t border-slate-100 bg-slate-50/50">
+            <div class="flex items-center justify-between p-2 rounded-lg hover:bg-slate-100 transition-colors">
+                <!-- Profile Summary -->
+                <a href="#" class="flex items-center gap-3 overflow-hidden min-w-0">
+                    <img src="https://ahzanmc.com/thumbnail.png" 
+                        alt="Avatar Profile" 
+                        class="w-9 h-9 rounded-full object-cover border border-slate-300 shrink-0"
+                        onerror="this.src='https://placehold.co/100x100/334155/ffffff?text=User'">
+                    <div class="sidebar-text overflow-hidden">
+                        <p class="text-sm font-semibold text-slate-800 truncate">Nama kamu</p>
+                        <p class="text-xs text-slate-500 truncate">namakamu@webkamu.id</p>
+                    </div>
+                </a>
+
+                <!-- Logout Button -->
+                <button onclick="handleLogout()" 
+                    class="sidebar-text p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0 cursor-pointer" 
+                    title="Logout / Keluar">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================================================================= -->
+    <!-- MAIN CONTENT AREA CONTAINER                                       -->
+    <!-- ================================================================= -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden">
+
+        <!-- ============================================================= -->
+        <!-- NAVBAR SECTION (Top Navigation Bar)                           -->
+        <!-- ============================================================= -->
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 lg:px-6 z-20 shrink-0">
+            
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Left Side: Mobile Menu Button & Search Input -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <div class="flex items-center gap-3">
+                <!-- Mobile Sidebar Toggle -->
+                <button id="mobileSidebarToggle" class="btn-icon md:hidden" title="Toggle Mobile Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+
+                <!-- Universal Search Input Bar -->
+                <div class="relative hidden sm:block w-64 lg:w-80">
+                    <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" placeholder="Cari data, proyek, atau modul..." 
+                            class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-slate-400 focus:bg-white transition-all">
+                </div>
+            </div>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Right Side: Action Icons & User Dropdown -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <div class="flex items-center gap-2">
+                <!-- Notifications Button -->
+                <button class="btn-icon relative" onclick="triggerToast('Tidak ada notifikasi baru')">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    <span class="w-2 h-2 bg-rose-500 rounded-full absolute top-2 right-2"></span>
+                </button>
+
+                <!-- Quick Help / Docs Link -->
+                <button class="btn-icon" onclick="triggerToast('Dokumentasi modular dimuat')">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </button>
+                <div class="h-6 w-[1px] bg-slate-200 mx-1"></div>
+
+                <!-- Quick User Status (Bisa diganti sewaktu-waktu) -->
+                <span class="text-xs font-semibold px-2 py-1 bg-slate-100 text-slate-600 rounded border border-slate-200 hidden md:inline-block">
+                    PRO Plan
+                </span>
+            </div>
+        </header>
+
+        <!-- ============================================================= -->
+        <!-- SCROLLABLE DASHBOARD MAIN BODY                                -->
+        <!-- ============================================================= -->
+        <main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-6">
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Page Title Header -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Ringkasan Dasbor</h1>
+                    <p class="text-slate-500 text-sm mt-0.5">Kelola data, modul, dan aktivitas sistem Anda dari satu tempat.</p>
+                </div>
+                <button onclick="openCrudModal('add')" class="btn-primary">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    Tambah Data Baru
+                </button>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- WIDGET : STAT CARDS SECTION                                -->
+            <!-- ========================================================= -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Card 1 -->
+                <div class="card-stat">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Proyek</span>
+                        <div class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-2xl font-bold text-slate-900">28</h3>
+                        <p class="text-xs text-emerald-600 mt-1 font-medium flex items-center gap-1">
+                            <span>↑ 12%</span>
+                            <span class="text-slate-400">dibanding bulan lalu</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-stat">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tugas Aktif</span>
+                        <div class="p-2 bg-amber-50 text-amber-600 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-2xl font-bold text-slate-900">142</h3>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">8 tugas tenggat hari ini</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-stat">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Selesai</span>
+                        <div class="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-2xl font-bold text-slate-900">94.2%</h3>
+                        <p class="text-xs text-emerald-600 mt-1 font-medium">Target performa tercapai</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card-stat">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pengguna Aktif</span>
+                        <div class="p-2 bg-purple-50 text-purple-600 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-2xl font-bold text-slate-900">1,240</h3>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">Terhubung secara real-time</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- AREA TABEL DATA SAMA CRUD                                 -->
+            <!-- ========================================================= -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <!-- CRUD Action Bar & Filter Header -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <div class="p-4 sm:p-5 border-b border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                    
+                    <!-- Search Field in Table -->
+                    <div class="relative flex-1 max-w-xs">
+                        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input id="tableSearchInput" onkeyup="filterTable()" type="text" placeholder="Filter tabel..." 
+                                class="w-full pl-9 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-slate-400">
+                    </div>
+
+                    <!-- Filter Dropdowns & Extra Actions -->
+                    <div class="flex items-center gap-2 self-end sm:self-auto">
+                        <select class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-slate-400">
+                            <option value="">Semua Status</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Selesai">Selesai</option>
+                        </select>
+                        
+                        <button class="btn-secondary text-sm !py-1.5" onclick="triggerToast('Data berhasil diekspor!')">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                            </svg>
+                            Ekspor
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <!-- Data Table Content -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-600" id="dataTable">
+                        <thead class="bg-slate-50/80 text-xs text-slate-500 uppercase font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-3.5">ID</th>
+                                <th class="px-6 py-3.5">Nama Proyek / Modul</th>
+                                <th class="px-6 py-3.5">Kategori</th>
+                                <th class="px-6 py-3.5">Status</th>
+                                <th class="px-6 py-3.5">Dibuat Tanggal</th>
+                                <th class="px-6 py-3.5 text-right">Aksi (CRUD)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-slate-50/60 transition-colors">
+                                <td class="px-6 py-4 font-mono text-xs text-slate-400">#PRJ-001</td>
+                                <td class="px-6 py-4 font-medium text-slate-900">Desain Ulang Dashboard V2</td>
+                                <td class="px-6 py-4">UI/UX Design</td>
+                                <td class="px-6 py-4"><span class="badge-success">● Aktif</span></td>
+                                <td class="px-6 py-4 text-slate-500">12 Feb 2026</td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button onclick="openCrudModal('edit', 'Desain Ulang Dashboard V2', 'UI/UX Design', 'Aktif')" class="btn-icon text-slate-600" title="Edit">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="deleteItem(this, 'Desain Ulang Dashboard V2')" class="btn-danger" title="Hapus">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-slate-50/60 transition-colors">
+                                <td class="px-6 py-4 font-mono text-xs text-slate-400">#PRJ-002</td>
+                                <td class="px-6 py-4 font-medium text-slate-900">Integrasi API Payment Gateway</td>
+                                <td class="px-6 py-4">Backend API</td>
+                                <td class="px-6 py-4"><span class="badge-warning">● Pending</span></td>
+                                <td class="px-6 py-4 text-slate-500">18 Feb 2026</td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button onclick="openCrudModal('edit', 'Integrasi API Payment Gateway', 'Backend API', 'Pending')" class="btn-icon text-slate-600" title="Edit">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="deleteItem(this, 'Integrasi API Payment Gateway')" class="btn-danger" title="Hapus">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-slate-50/60 transition-colors">
+                                <td class="px-6 py-4 font-mono text-xs text-slate-400">#PRJ-003</td>
+                                <td class="px-6 py-4 font-medium text-slate-900">Migrasi Server Cloud AWS</td>
+                                <td class="px-6 py-4">DevOps</td>
+                                <td class="px-6 py-4"><span class="badge-info">● Selesai</span></td>
+                                <td class="px-6 py-4 text-slate-500">25 Jan 2026</td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button onclick="openCrudModal('edit', 'Migrasi Server Cloud AWS', 'DevOps', 'Selesai')" class="btn-icon text-slate-600" title="Edit">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="deleteItem(this, 'Migrasi Server Cloud AWS')" class="btn-danger" title="Hapus">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <!-- Table Footer Pagination -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <div class="px-6 py-3.5 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <span>Menampilkan 1-3 dari 3 data</span>
+                    <div class="flex items-center gap-1">
+                        <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50" disabled>Previous</button>
+                        <button class="px-2.5 py-1 rounded bg-slate-900 text-white font-medium">1</button>
+                        <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50">Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- CRUD MODAL DIALOG (Interactive Add/Edit Dummy Preview)           -->
+    <!-- ================================================================= -->
+    <div id="crudModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center hidden transition-opacity">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-xl w-full max-w-md mx-4 overflow-hidden transform transition-all">
+            
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Modal Header -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                <h3 id="modalTitle" class="font-bold text-slate-800 text-lg">Tambah Item Baru</h3>
+                <button onclick="closeCrudModal()" class="text-slate-400 hover:text-slate-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <!-- Modal Form Inputs -->
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <form id="crudForm" onsubmit="handleFormSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Nama Proyek / Modul</label>
+                    <input type="text" id="inputName" required placeholder="Contoh: Modul Absensi Pegawai" 
+                            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-slate-400 focus:bg-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Kategori Modul</label>
+                    <input type="text" id="inputCategory" required placeholder="Contoh: Frontend / Backend" 
+                            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-slate-400 focus:bg-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Status Proyek</label>
+                    <select id="inputStatus" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-slate-400 focus:bg-white">
+                        <option value="Aktif">Aktif</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Selesai">Selesai</option>
+                    </select>
+                </div>
+
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <!-- Form Actions -->
+                <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                <div class="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
+                    <button type="button" onclick="closeCrudModal()" class="btn-secondary">Batal</button>
+                    <button type="submit" class="btn-primary">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Toast Notification Box -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-lg shadow-lg text-sm font-medium transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+        <span id="toastMsg">Notifikasi</span>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- JAVASCRIPT CONTROLLER (Modular Functions & Event Handlers)        -->
+    <!-- ================================================================= -->
+    <script src="{{ url_for('static', filename='js/crudModal.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tableSearch.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/toastNotif.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sidebarToggle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Auth/logout.js') }}"></script>
+</body>
+</html>
