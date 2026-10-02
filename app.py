@@ -1,18 +1,29 @@
-from flask import Flask, render_template
+import os
+from dotenv import load_dotenv
+from flask import Flask
+from models import db
+from routes.auth import auth_bp
+from routes.dashboard import dashboard_bp
+
+load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.getenv('SECRET_KEY', 'default_fallback_key')
 
-@app.route('/')
-def dashboard():
-    return render_template('index.html')
+# Setup Database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
+# Inisialisasi DB dengan App
+db.init_app(app)
 
-@app.route('/register')
-def register():
-    return render_template('register.html')
+# Register Blueprint
+app.register_blueprint(auth_bp)
+app.register_blueprint(dashboard_bp)
+
+# Buat tabel otomatis
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
     app.run(debug=True)
